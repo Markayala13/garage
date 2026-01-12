@@ -1,0 +1,1545 @@
+/* ===========================
+   MAPLE MOTORSPORTS CSS
+   Racing Red: #DC143C
+   Deep Black: #0a0a0a
+   =========================== */
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --racing-red: #DC143C;
+    --deep-black: #0a0a0a;
+    --dark-gray: #1a1a1a;
+    --medium-gray: #2a2a2a;
+    --light-gray: #666;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background-color: var(--deep-black);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--deep-black);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.preloader-logo {
+    max-width: 150px;
+    animation: pulse 2s infinite;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--racing-red);
+    animation: loading 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes loading {
+    0% { left: -50%; }
+    100% { left: 100%; }
+}
+
+/* FORCE AOS VISIBILITY */
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 20px 0;
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(220, 20, 60, 0.1);
+}
+
+.navbar.scrolled {
+    padding: 15px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--racing-red);
+    letter-spacing: 2px;
+}
+
+.logo-motorsports {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 4px;
+    margin-top: -5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+.nav-link {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--racing-red);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--racing-red);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--racing-red);
+    transition: var(--transition);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--deep-black) 0%, var(--dark-gray) 100%);
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--racing-red), var(--deep-black));
+    opacity: 0.85;
+    mix-blend-mode: multiply;
+    z-index: 1;
+}
+
+.racing-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.racing-line {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent 0%, var(--racing-red) 50%, transparent 100%);
+    opacity: 0.3;
+    animation: raceLine 8s linear infinite;
+}
+
+.racing-line:nth-child(1) {
+    top: 20%;
+    animation-delay: 0s;
+}
+
+.racing-line:nth-child(2) {
+    top: 50%;
+    animation-delay: 2s;
+}
+
+.racing-line:nth-child(3) {
+    top: 80%;
+    animation-delay: 4s;
+}
+
+@keyframes raceLine {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+}
+
+.hero-logo {
+    margin-bottom: 20px;
+}
+
+.hero-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 180px;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 3px var(--racing-red);
+    text-stroke: 3px var(--racing-red);
+    letter-spacing: 10px;
+    line-height: 1;
+    display: inline-block;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px var(--racing-red));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px var(--racing-red));
+    }
+}
+
+.hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 8px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--racing-red);
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-bottom: 50px;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--racing-red);
+    line-height: 1;
+}
+
+.stat-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 40px;
+    background: var(--racing-red);
+    color: var(--white);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border: 2px solid var(--racing-red);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.cta-button:hover::before {
+    left: 0;
+}
+
+.cta-button:hover {
+    color: var(--racing-red);
+    border-color: var(--racing-red);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.mouse {
+    width: 28px;
+    height: 45px;
+    border: 2px solid var(--racing-red);
+    border-radius: 15px;
+    position: relative;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--racing-red);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll 2s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        opacity: 1;
+        top: 8px;
+    }
+    100% {
+        opacity: 0;
+        top: 25px;
+    }
+}
+
+/* Section Styles */
+section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--racing-red);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.title-line {
+    width: 100px;
+    height: 3px;
+    background: var(--racing-red);
+    margin: 0 auto;
+}
+
+/* About Section */
+.about {
+    background: var(--dark-gray);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-text .lead-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--racing-red);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.about-text p {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.about-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.feature-item {
+    display: flex;
+    gap: 20px;
+    padding: 25px;
+    background: var(--medium-gray);
+    border-left: 4px solid var(--racing-red);
+    transition: var(--transition);
+}
+
+.feature-item:hover {
+    transform: translateX(10px);
+    background: rgba(220, 20, 60, 0.1);
+}
+
+.feature-item i {
+    font-size: 32px;
+    color: var(--racing-red);
+    flex-shrink: 0;
+}
+
+.feature-item h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.feature-item p {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+}
+
+.about-image .image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border: 4px solid var(--racing-red);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(220, 20, 60, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.image-wrapper:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.1);
+}
+
+.overlay-content {
+    text-align: center;
+    color: var(--white);
+}
+
+.overlay-content i {
+    font-size: 64px;
+    margin-bottom: 15px;
+}
+
+.overlay-content span {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Teams Section */
+.teams {
+    background: var(--deep-black);
+}
+
+.drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.driver-card {
+    background: var(--dark-gray);
+    border: 2px solid var(--medium-gray);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.driver-card:hover {
+    border-color: var(--racing-red);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(220, 20, 60, 0.3);
+}
+
+.driver-header {
+    background: var(--medium-gray);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.driver-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--racing-red);
+    letter-spacing: 2px;
+}
+
+.driver-role {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+}
+
+.rookie-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--racing-red);
+    color: var(--white);
+    padding: 8px 15px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 3px;
+}
+
+.driver-image {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    background: var(--medium-gray);
+}
+
+.driver-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: var(--transition);
+}
+
+.driver-card:hover .driver-image img {
+    transform: scale(1.1);
+}
+
+.driver-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.95), transparent);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.driver-card:hover .driver-overlay {
+    opacity: 1;
+}
+
+.driver-stats-quick {
+    display: flex;
+    gap: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.driver-stats-quick span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.driver-stats-quick i {
+    color: var(--racing-red);
+}
+
+.driver-info {
+    padding: 30px;
+}
+
+.driver-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.driver-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--light-gray);
+    margin-bottom: 20px;
+}
+
+.driver-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.driver-meta i {
+    color: var(--racing-red);
+}
+
+.driver-bio {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.driver-bio-short {
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.driver-bio-full {
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.read-more-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid var(--racing-red);
+    color: var(--racing-red);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.read-more-btn:hover {
+    background: var(--racing-red);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.read-more-btn.active {
+    background: var(--racing-red);
+    color: var(--white);
+}
+
+.read-more-btn i {
+    transition: transform 0.3s ease;
+}
+
+.read-more-btn.active i {
+    transform: rotate(180deg);
+}
+
+
+.driver-achievements {
+    background: var(--medium-gray);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--racing-red);
+}
+
+.driver-achievements h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--racing-red);
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.driver-achievements ul {
+    list-style: none;
+}
+
+.driver-achievements li {
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.6;
+}
+
+.driver-achievements li i {
+    color: var(--racing-red);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.driver-achievements li strong {
+    color: var(--white);
+}
+
+.driver-social {
+    display: flex;
+    gap: 15px;
+}
+
+.driver-social .social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--medium-gray);
+    color: var(--white);
+    border: 1px solid var(--medium-gray);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.driver-social .social-link:hover {
+    background: var(--racing-red);
+    border-color: var(--racing-red);
+    transform: translateY(-3px);
+}
+
+/* Schedule Section */
+.schedule {
+    background: var(--dark-gray);
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.race-card {
+    background: var(--medium-gray);
+    padding: 25px;
+    border-left: 4px solid var(--racing-red);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.race-card:hover {
+    background: rgba(220, 20, 60, 0.1);
+    transform: translateX(10px);
+}
+
+.race-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(220, 20, 60, 0.2);
+}
+
+.race-date {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-day {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--racing-red);
+    letter-spacing: 2px;
+}
+
+.date-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.race-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.race-location,
+.race-time {
+    font-size: 14px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.race-location i,
+.race-time i {
+    color: var(--racing-red);
+}
+
+.race-status {
+    display: inline-block;
+    padding: 6px 15px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    width: fit-content;
+}
+
+.race-status.upcoming {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+.race-status.championship {
+    background: var(--racing-red);
+    color: var(--white);
+}
+
+/* Partners Section */
+.partners {
+    background: var(--deep-black);
+}
+
+.partners-intro {
+    text-align: center;
+    font-size: 18px;
+    color: #ccc;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    line-height: 1.8;
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.partner-card {
+    background: var(--dark-gray);
+    padding: 40px;
+    border: 2px solid var(--medium-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    transition: var(--transition);
+}
+
+.partner-card:hover {
+    border-color: var(--racing-red);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(220, 20, 60, 0.2);
+}
+
+.partner-card img {
+    max-width: 100%;
+    max-height: 120px;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.partner-card:hover img {
+    transform: scale(1.1);
+}
+
+.partner-logo-placeholder {
+    text-align: center;
+    color: var(--light-gray);
+}
+
+.partner-logo-placeholder i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: var(--racing-red);
+}
+
+.partner-logo-placeholder span {
+    display: block;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.partnership-cta {
+    text-align: center;
+    padding: 60px 40px;
+    background: var(--dark-gray);
+    border: 2px solid var(--racing-red);
+}
+
+.partnership-cta h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.partnership-cta p {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+/* Gallery Section */
+.gallery {
+    background: var(--dark-gray);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(220, 20, 60, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay i {
+    font-size: 48px;
+    color: var(--white);
+}
+
+/* Contact Section */
+/* Crew Section - Grid Fix */
+.crew .drivers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 350px));
+    justify-content: start;
+}
+
+/* Contact Section */
+.contact {
+    background: var(--deep-black);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.contact-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.contact-info > p {
+    font-size: 16px;
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.contact-item i {
+    font-size: 24px;
+    color: var(--racing-red);
+    margin-top: 5px;
+}
+
+.contact-item h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 5px;
+}
+
+.contact-item a,
+.contact-item p {
+    font-size: 14px;
+    color: #ccc;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    color: var(--racing-red);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links .social-link {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--medium-gray);
+    color: var(--white);
+    font-size: 20px;
+    border: 2px solid var(--medium-gray);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-links .social-link:hover {
+    background: var(--racing-red);
+    border-color: var(--racing-red);
+    transform: translateY(-5px);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 18px 20px;
+    background: var(--dark-gray);
+    border: 2px solid var(--medium-gray);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--racing-red);
+    background: rgba(220, 20, 60, 0.05);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.contact-form .cta-button {
+    width: fit-content;
+    cursor: pointer;
+    border: none;
+}
+
+/* Footer */
+.footer {
+    background: var(--dark-gray);
+    padding: 60px 0 30px;
+    border-top: 1px solid var(--medium-gray);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.footer-logo .logo-img {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+}
+
+.footer-section p {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.8;
+}
+
+.footer-section h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section li {
+    margin-bottom: 12px;
+}
+
+.footer-section a {
+    font-size: 14px;
+    color: #999;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: var(--racing-red);
+    padding-left: 5px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--medium-gray);
+    color: var(--white);
+    font-size: 18px;
+    transition: var(--transition);
+}
+
+.footer-social a:hover {
+    background: var(--racing-red);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--medium-gray);
+}
+
+.footer-bottom p {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Scroll to Top */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--racing-red);
+    color: var(--white);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 999;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background: var(--white);
+    color: var(--racing-red);
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(10, 10, 10, 0.98);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 40px;
+        gap: 30px;
+        transition: var(--transition);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .hero-number {
+        font-size: 120px;
+    }
+
+    .hero-title {
+        font-size: 48px;
+    }
+
+    .hero-stats {
+        gap: 40px;
+    }
+
+    .about-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 42px;
+    }
+
+    .hero-number {
+        font-size: 80px;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .drivers-grid,
+    .schedule-grid,
+    .partners-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero-number {
+        font-size: 60px;
+        -webkit-text-stroke: 2px var(--racing-red);
+    }
+
+    .hero-title {
+        font-size: 28px;
+        letter-spacing: 4px;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .stat-number {
+        font-size: 48px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+}
+
+/* Swiper Customization */
+.swiper {
+    width: 100%;
+    padding-bottom: 50px; /* Space for pagination */
+    padding-top: 20px; /* Space for hover effects */
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex; /* Ensure slide takes full height */
+}
+
+.swiper-slide .driver-card {
+    width: 100%; /* Ensure card fills the slide */
+}
+
+/* Navigation buttons visible on all devices */
+.swiper-button-next,
+.swiper-button-prev {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 18px; /* Smaller arrows on mobile */
+    }
+}
+
+.swiper-pagination-bullet {
+    background: var(--white);
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--racing-red);
+    opacity: 1;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #007bff; /* Blue for visibility */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 24px;
+    font-weight: bold;
+}
